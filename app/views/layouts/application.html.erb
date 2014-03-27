@@ -7,7 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  <nav>
+    <ul>
+      <li><%= link_to_unless_current 'Home', root_path %></li>
+      <% if current_user %>
+        <li><%= link_to_unless_current current_user.name, current_user %></li>
+        <li><%= link_to_unless_current 'Logout', logout_path %></li>
+      <% else %>
+        <li><%= link_to_unless_current 'Login', login_path %></li>
+      <% end %>
+      <% if current_admin %>
+        <li><%= link_to 'Admin Tools', users_path %></li>
+      <% end %>
+    </ul>
+  </nav>
+  <hr>
 <%= yield %>
 
 </body>
