@@ -7,7 +7,7 @@
 
 <% unless params[:b].nil? %>
   <% @display_courts.each do |c| %>
-    <p><%= c.name %><br><%= c.location %></p>
+    <p><%= link_to c.name, c %><br><%= c.location %></p>
   <% end %>
   <p>Page:
     <% (1..@pages).each do |p| %>

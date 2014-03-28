@@ -16,6 +16,7 @@
       <% else %>
         <li><%= link_to_unless_current 'Login', login_path %></li>
       <% end %>
+      <li><%= link_to_unless_current 'Courts', courts_path %></li>
       <% if current_admin %>
         <li><%= link_to 'Admin Tools', users_path %></li>
       <% end %>

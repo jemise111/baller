@@ -1,0 +1,12 @@
+<h1><%= @court.name %></h1>
+<p><%= @court.location %></p>
+<p>Number of courts: <%= @court.num_courts.zero? ? 'unknown' : @court.num_courts %></p>
+
+<iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/view?key=AIzaSyBUAOr0dXo8Oa5nBuDzLDRXYifbUg1kzqk&zoom=19&center=<%= @court.latitude %>, <%= @court.longitude %>&maptype=satellite">
+</iframe>
+
+<%= link_to 'Back to all courts', courts_path %>
