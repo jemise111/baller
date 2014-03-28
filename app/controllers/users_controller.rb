@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_action :require_authentication, only: [:show, :edit, :update, :destroy]
   before_action :require_admin_authentication, only: [:index]
 
@@ -53,7 +52,9 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
-    params.require(:user).permit(:name, :email, :zip_code, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :zip_code,
+                                 :password, :password_confirmation)
   end
 end

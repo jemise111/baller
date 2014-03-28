@@ -1,10 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'open-uri'
 
 unless User.exists?(name: 'Jesse Sessler', admin: true)
   User.create(name: 'Jesse Sessler',
@@ -14,3 +8,21 @@ unless User.exists?(name: 'Jesse Sessler', admin: true)
               password: 'jessesessler',
               password_confirmation: 'jessesessler')
 end
+
+boroughs = {'X' => 'Bronx',
+            'B' => 'Brooklyn',
+            'M' => 'Manhattan',
+            'Q' => 'Queens',
+            'R' => 'Staten Island'}
+
+courts = Crack::XML.parse(open("http://www.nycgovparks.org/bigapps/DPR_Basketball_001.xml"))
+courts['basketball']['facility'].each do |c|
+  Court.create(name: c['Name'],
+               location: c['Location'],
+               borough: boroughs[c['Prop_ID'][0]],
+               num_courts: c['Num_of_Courts'].to_i,
+               latitude: c['lat'].to_f,
+               longitude: c['lon'].to_f)
+end
+
+

@@ -47,3 +47,6 @@ gem 'bcrypt', '~> 3.1.7'
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
 end
+
+# to parse XML into json
+gem 'crack'

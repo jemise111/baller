@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path # change this
     else
-      flash[:login_error] = 'Invalid email and/or password'
+      flash.now[:login_error] = 'Invalid email and/or password'
       render 'new'
     end
   end
