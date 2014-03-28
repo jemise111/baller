@@ -1,23 +1,30 @@
 <%= form_for(@user) do |f| %>
+  <div class="error_list">
+    <ul>
+      <% @user.errors.full_messages.each do |m| %>
+        <li><%= m %></li>
+      <% end %>
+    </ul>
+  </div>
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password, required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, 'Confirm Password' %><br>
+    <%= f.password_field :password_confirmation, required: true %>
   </div>
   <div class="field">
     <%= f.label :zip_code, 'Zip Code' %><br>
     <%= f.number_field :zip_code %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation, 'Confirm Password' %><br>
-    <%= f.password_field :password_confirmation %>
   </div>
   <div class="actions">
     <%= f.submit %>
