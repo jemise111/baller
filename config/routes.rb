@@ -1,6 +1,7 @@
 Baller::Application.routes.draw do
 
   resources :users
+  resources :courts
 
   get '/login', to: 'sessions#new'
   post '/sessions', to: 'sessions#create'

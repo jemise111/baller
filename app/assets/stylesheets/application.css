@@ -15,3 +15,12 @@
 .user_stat p {
   display: inline;
 }
+
+.horizontal_list {
+  list-style: none;
+}
+
+.horizontal_list li {
+  display: inline;
+  padding: 0 10px;
+}

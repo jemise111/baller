@@ -1,0 +1,17 @@
+<h2>Select a borough</h2>
+<ul class='horizontal_list'>
+  <% @boroughs.each do |borough| %>
+    <li><%= link_to_unless params[:b] == borough, borough, params.merge({b: borough, p: 1}) %></li>
+  <% end %>
+</ul>
+
+<% unless params[:b].nil? %>
+  <% @display_courts.each do |c| %>
+    <p><%= c.name %><br><%= c.location %></p>
+  <% end %>
+  <p>Page:
+    <% (1..@pages).each do |p| %>
+      <%= link_to_unless_current p, params.merge({b: params[:b], p: p}) %>
+    <% end %>
+  </p>
+<% end %>
