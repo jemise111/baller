@@ -1,0 +1,36 @@
+<%= form_for(@court) do |f| %>
+  <div class="error_list">
+    <ul>
+      <% @court.errors.full_messages.each do |m| %>
+        <li><%= m %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br>
+    <%= f.text_field :location, required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :borough %><br>
+    <%= f.text_field :borough, required: true %>
+  </div>
+  <div class="field">
+    <%= f.label :num_courts, 'Number of Courts' %><br>
+    <%= f.number_field :num_courts %>
+  </div>
+  <div class="field">
+    <%= f.label :latitude %><br>
+    <%= f.number_field :latitude %>
+  </div>
+  <div class="field">
+    <%= f.label :longitude %><br>
+    <%= f.number_field :longitude %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<div class="admin_stat">
+  <p><%= comment.id %> | </p>
+  <p><%= link_to comment.court.name, comment.court %> | </p>
+  <p><%= link_to comment.user.name, comment.user %> | </p>
+  <p><em><%= comment.body %> | </em></p>
+  <p>Approved? <%= comment.approved %> | </p>
+  <p><%= link_to 'Toggle Approval', "/comments/#{comment.id}/approval", method: :post %></p>
+  <p><%= link_to 'edit', edit_comment_path(comment) %></p>
+  <p><%= link_to 'delete', comment, method: :delete, data: {confirm: 'Are you sure? You cannot undo this action'} %></p>
+</div>

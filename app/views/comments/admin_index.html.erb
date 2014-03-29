@@ -1,0 +1,11 @@
+<h1>Comments</h1>
+
+<h2>Unapproved</h2>
+<% @unapproved_comments.each do |comment| %>
+  <%= render partial: 'admin_tools_comment', locals: {comment: comment} %>
+<% end %>
+
+<h2>Approved</h2>
+<% @approved_comments.each do |comment| %>
+  <%= render partial: 'admin_tools_comment', locals: {comment: comment} %>
+<% end %>

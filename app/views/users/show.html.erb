@@ -3,3 +3,5 @@
 
 <%= link_to 'Edit Profile', edit_user_path(@user) if current_user == @user %>
 <%= link_to 'Delete Profile', @user, method: :delete, data: {confirm: 'Are you sure you wish to delete your profile?'} if current_user == @user && !current_admin %>
+
+<%= link_to 'back', :back %>

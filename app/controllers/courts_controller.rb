@@ -1,7 +1,7 @@
 class CourtsController < ApplicationController
 
   before_action :require_authentication, only: [:show]
-  before_action :require_admin_authentication, only: [:new, :create, :update, :edit, :destroy]
+  before_action :require_admin_authentication, only: [:admin_index, :new, :create, :update, :edit, :destroy]
 
   # Keep under minimum for courts in Staten Island
   MAX_TO_DISPLAY = 25
@@ -42,14 +42,18 @@ class CourtsController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+      @user = User.find(params[:id])
     @user.destroy
+  end
+
+  def admin_index
+    @courts = Court.all
   end
 
   private
 
   def court_params
-    params.require(:court).permit(:name, :location, :borough
+    params.require(:court).permit(:name, :location, :borough,
                                   :num_courts, :latitude, :longitude)
   end
 end

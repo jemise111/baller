@@ -1,7 +1,12 @@
 Baller::Application.routes.draw do
 
+  get '/courts/admin-index', to: 'courts#admin_index'
+  get '/comments', to: 'comments#admin_index'
+  post '/comments/:id/approval', to: 'comments#approval'
   resources :users
-  resources :courts
+  resources :courts, shallow: true do
+    resources :comments
+  end
 
   get '/login', to: 'sessions#new'
   post '/sessions', to: 'sessions#create'
