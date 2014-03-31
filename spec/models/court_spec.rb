@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Court do
-  let(:court) { Court.new(name: 'Test Park',
+  subject(:court) { Court.new(name: 'Test Park',
                           location: '106 and Park',
                           borough: 'Queens',
                           num_courts: 3,

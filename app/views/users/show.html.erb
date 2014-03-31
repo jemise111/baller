@@ -1,7 +1,17 @@
 <!-- This will be profile page a user sees -->
 <h1><%= @user.name %></h1>
 
-<%= link_to 'Edit Profile', edit_user_path(@user) if current_user == @user %>
-<%= link_to 'Delete Profile', @user, method: :delete, data: {confirm: 'Are you sure you wish to delete your profile?'} if current_user == @user && !current_admin %>
+<% if current_user == @user %>
+  <%= link_to 'Edit Profile', edit_user_path(@user) %>
+  <%= link_to 'Delete Profile', @user, method: :delete, data: {confirm: 'Are you sure you wish to delete your profile?'} %>
+<% end %>
+
+<h3>Game History</h3>
+<% @user.games.group_by { |game| game.court }.each do |court, games| %>
+  <p><em><%= court.name %></em></p>
+  <% games.each do |game| %>
+    <%= render partial: 'games/game', locals: {game: game} %>
+  <% end %>
+<% end %>
 
 <%= link_to 'back', :back %>

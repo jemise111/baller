@@ -3,9 +3,9 @@ class CommentsController < ApplicationController
   before_action :require_admin_authentication, only: [:admin_index]
 
   def admin_index
-  # For admin tools
-  @approved_comments = Comment.where(approved: true)
-  @unapproved_comments = Comment.where(approved: false)
+    # For admin tools
+    @approved_comments = Comment.where(approved: true)
+    @unapproved_comments = Comment.where(approved: false)
   end
 
   # DRY up redirects

@@ -5,13 +5,25 @@
   <% end %>
 </ul>
 
+<p>Or search for courts:</p>
+<%= form_tag("/courts/search", method: "get") do %>
+  <%= text_field_tag :q, nil, placeholder: 'Zip Code' %>
+  <%= submit_tag("Search") %>
+<% end %>
+
 <% unless params[:b].nil? %>
-  <% @display_courts.each do |c| %>
-    <p><%= link_to c.name, c %><br><%= c.location %></p>
+  <% @display_courts.each do |court| %>
+    <p>
+      <%= link_to court.name, court %>
+      <% if court.games.any? {|game| !game.past? } %>
+        (games here!)
+      <% end %>
+      <br><%= court.location %>
+    </p>
   <% end %>
   <p>Page:
-    <% (1..@pages).each do |p| %>
-      <%= link_to_unless_current p, params.merge({b: params[:b], p: p}) %>
+    <% (1..@pages).each do |page| %>
+      <%= link_to_unless_current page, params.merge({b: params[:b], p: page}) %>
     <% end %>
   </p>
 <% end %>

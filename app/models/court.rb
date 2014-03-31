@@ -1,8 +1,9 @@
 class Court < ActiveRecord::Base
   has_many(:comments)
+  has_many(:games)
   validates(:name, presence: true)
   validates(:location, presence: true)
-  validates(:borogh, presence: true,
+  validates(:borough, presence: true,
                      inclusion: ['Bronx', 'Queens', 'Brooklyn', 'Manhattan', 'Staten Island'])
   # DRY this up
   validates(:num_courts, numericality: true)

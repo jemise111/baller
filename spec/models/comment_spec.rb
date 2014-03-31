@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Comment do
-  let(:comment) { Comment.create(body: 'Court has sweet rims, no cracks, lots of players.') }
+  subject(:comment) { Comment.create(body: 'Court has sweet rims, no cracks, lots of players.') }
   before(:each) do
     comment.update(approved: false)
   end

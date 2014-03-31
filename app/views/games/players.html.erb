@@ -1,0 +1,10 @@
+<h1>Edit players for game at <%= @game.court.name %></h1>
+<p><%= "#{@game.start_at.strftime("%a")} #{@game.start_at.strftime("%D")} at #{@game.start_at.strftime("%l:%M %P")}" %></p>
+<ul>
+  <% @game.users.each do |user| %>
+    <li>
+      <%= link_to user.name, user %>
+      <%= link_to 'remove player', "/games/#{@game.id}/users/#{user.id}", {method: :post} %>
+    </li>
+  <% end %>
+</ul>

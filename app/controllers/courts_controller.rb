@@ -50,6 +50,10 @@ class CourtsController < ApplicationController
     @courts = Court.all
   end
 
+  def search
+    @results =
+  end
+
   private
 
   def court_params

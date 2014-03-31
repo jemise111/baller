@@ -1,7 +1,7 @@
 <!-- This is for admin display, not 'show' view -->
 <div class="admin_stat">
   <p><%= user.id %> | </p>
-  <p><%= user.name %> | </p>
+  <p><%= link_to user.name, user %> | </p>
   <p><%= user.email %> | </p>
   <p><%= user.zip_code %> | </p>
   <p>Admin? <%= user.admin %> | </p>

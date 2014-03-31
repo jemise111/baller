@@ -1,11 +1,18 @@
 Baller::Application.routes.draw do
 
   get '/courts/admin-index', to: 'courts#admin_index'
+  get '/courts/search', to: 'courts#search'
+  get '/games', to: 'games#index'
   get '/comments', to: 'comments#admin_index'
   post '/comments/:id/approval', to: 'comments#approval'
+  get '/games/:id/players', to: 'games#players'
+  post '/games/:game_id/users/:id', to: 'games#remove_player'
+  post '/games/:id/remove-current', to: 'games#remove_current'
+  post '/games/:id/add-current', to: 'games#add_current'
   resources :users
   resources :courts, shallow: true do
     resources :comments
+    resources :games
   end
 
   get '/login', to: 'sessions#new'

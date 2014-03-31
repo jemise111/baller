@@ -1,0 +1,11 @@
+<!-- Admin page -->
+
+<h2>Upcoming/Recent</h2>
+<% @future_games.each do |game| %>
+  <%= render partial: 'admin_tools_game', locals: {game: game} %>
+<% end %>
+
+<h2>Past</h2>
+<% @past_games.each do |game| %>
+  <%= render partial: 'admin_tools_game', locals: {game: game} %>
+<% end %>

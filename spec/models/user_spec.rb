@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  let(:mike) { User.create(name: 'Mike Jones',
+  subject(:mike) { User.create(name: 'Mike Jones',
                         email: 'mike.jones@gmail.com',
                         zip_code: 10001,
                         password: 'mikejones',
