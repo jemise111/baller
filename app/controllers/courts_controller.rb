@@ -51,7 +51,12 @@ class CourtsController < ApplicationController
   end
 
   def search
-    @results =
+    result = Geocoder.search(params[:q].to_i).first
+    lat_long = [result.latitude, result.longitude]
+    @result_courts = Court.all.select do |court|
+      coorDist(court.latitude, court.longitude, lat_long[0], lat_long[1]) < Court::CLOSE_DISTANCE
+    end
+    flash.now[:no_results] = 'No courts found'
   end
 
   private
@@ -59,5 +64,34 @@ class CourtsController < ApplicationController
   def court_params
     params.require(:court).permit(:name, :location, :borough,
                                   :num_courts, :latitude, :longitude)
+  end
+
+  def coorDist(lat1, lon1, lat2, lon2)
+    earthRadius = 6371 # Earth's radius in KM
+
+        # convert degrees to radians
+        def convDegRad(value)
+          unless value.nil? or value == 0
+                value = (value/180) * Math::PI
+          end
+        return value
+        end
+
+    deltaLat = (lat2-lat1)
+    deltaLon = (lon2-lon1)
+    deltaLat = convDegRad(deltaLat)
+    deltaLon = convDegRad(deltaLon)
+
+    # Calculate square of half the chord length between latitude and longitude
+    a = Math.sin(deltaLat/2) * Math.sin(deltaLat/2) +
+        Math.cos((lat1/180 * Math::PI)) * Math.cos((lat2/180 * Math::PI)) *
+        Math.sin(deltaLon/2) * Math.sin(deltaLon/2);
+
+    # Calculate the angular distance in radians
+    c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+
+    distance = earthRadius * c
+
+    return distance
   end
 end

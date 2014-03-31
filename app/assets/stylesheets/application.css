@@ -12,6 +12,10 @@
  *= require_tree .
  */
 
+.header {
+  font: 24px 'Arial Black';
+}
+
 .admin_stat p {
   display: inline;
 }

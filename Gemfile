@@ -52,5 +52,10 @@ group :development do
   gem 'meta_request'
 end
 
-# to parse XML into json
+# Use crack to parse XML into json
 gem 'crack'
+
+# Use Geocoder for location search
+gem 'geocoder'
+
+gem 'pry-rails'

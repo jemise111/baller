@@ -37,13 +37,18 @@ class UsersController < ApplicationController
     end
   end
 
+  # If password is too short, render edit page again
+
   def update
     @user = User.find(params[:id])
-    if current_user != @user
-      redirect_to root_path unless current_admin
+    # if current_user != @user
+    #   redirect_to root_path unless current_admin
+    # end
+    if @user.update(user_params)
+      redirect_to(@user)
+    else
+      render 'edit'
     end
-    @user.update(user_params)
-    redirect_to(@user)
   end
 
   def destroy
