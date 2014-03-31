@@ -17,4 +17,13 @@ describe Court do
       expect(court.longitude).to eq(-73.9644)
     end
   end
+
+  describe '#is_close_to?' do
+    it 'should return true if court is close to latitudue, longitude args' do
+      expect(court.is_close_to?(40.7826, -73.9644)).to eq(true)
+    end
+    it 'should return false if court is far away' do
+      expect(court.is_close_to?(80, -73.9644)).to eq(false)
+    end
+  end
 end

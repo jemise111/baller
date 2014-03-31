@@ -6,7 +6,9 @@ unless User.exists?(name: 'Jesse Sessler', admin: true)
               admin: true,
               zip_code: 10065,
               password: 'jessesessler',
-              password_confirmation: 'jessesessler')
+              password_confirmation: 'jessesessler',
+              notifications: true,
+              email_display: true)
 end
 
 boroughs = {'X' => 'Bronx',

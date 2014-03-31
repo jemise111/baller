@@ -23,6 +23,10 @@
     <%= f.password_field :password_confirmation, required: true %>
   </div>
   <div class="field">
+    <%= f.label :notifications, "I'd like to receive email notifications about games I'm playing in." %><br>
+    <%= f.check_box :notifications, {}, true, false %>
+  </div>
+  <div class="field">
     <%= f.label :zip_code, 'Zip Code' %><br>
     <%= f.number_field :zip_code %>
   </div>

@@ -13,12 +13,11 @@ class ApplicationController < ActionController::Base
   end
 
   def require_authentication
-    # watch for odd behavior since not using flash.now
-    flash[:auth_error] = 'You must be logged in to view that page'
+    flash[:auth_error] = 'You must be logged in to view that page' # THIS IS BUGGY!
     redirect_to login_path unless current_user
   end
 
   def require_admin_authentication
-    redirect_to login_path unless current_admin
+    redirect_to root_path unless current_admin
   end
 end

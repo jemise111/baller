@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     # custom authentication
     require_admin_authentication if current_user
     @user = User.new(user_params)
-    @user.update(admin: false)
+    @user.update(admin: false, email_display: true)
     if @user.save
       session[:user_id] = @user.id # user is logged in upon creation
       redirect_to root_path
@@ -53,18 +53,19 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    if current_user != @user
-      redirect_to root_path unless current_admin
+    if current_user != @user && !current_admin
+      redirect_to root_path
+    else
+      @user.destroy
+      session[:user_id] = nil unless current_admin
+      redirect_to(users_path)
     end
-    @user.destroy
-    session[:user_id] = nil unless current_admin
-    redirect_to(users_path)
   end
 
   private
 
   def user_params
     params.require(:user).permit(:name, :email, :zip_code,
-                                 :password, :password_confirmation)
+                                 :password, :password_confirmation, :notifications)
   end
 end

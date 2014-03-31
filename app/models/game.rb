@@ -1,4 +1,5 @@
 class Game < ActiveRecord::Base
+  # set up dependency?
   has_and_belongs_to_many(:users)
   belongs_to(:court)
 

@@ -1,6 +1,10 @@
 <!-- This will be profile page a user sees -->
 <h1><%= @user.name %></h1>
 
+<% if @user.email_display %>
+  <p><%= @user.email %></p>
+<% end %>
+
 <% if current_user == @user %>
   <%= link_to 'Edit Profile', edit_user_path(@user) %>
   <%= link_to 'Delete Profile', @user, method: :delete, data: {confirm: 'Are you sure you wish to delete your profile?'} %>

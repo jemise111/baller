@@ -39,9 +39,13 @@ class GamesController < ApplicationController
 
   def remove_current
     game = Game.find(params[:id])
-    game.users.delete(current_user)
-    game.save
-    redirect_to :back
+    if game.past?
+      redirect_to :back
+    else
+      game.users.delete(current_user)
+      game.save
+      redirect_to :back
+    end
   end
 
   def add_current
