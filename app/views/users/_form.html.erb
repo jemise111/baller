@@ -24,7 +24,11 @@
   </div>
   <div class="field">
     <%= f.label :notifications, "I'd like to receive email notifications about games I'm playing in." %><br>
-    <%= f.check_box :notifications, {}, true, false %>
+    <%= f.check_box :notifications, {}, 'true', 'false' %>
+  </div>
+  <div class="field">
+    <%= f.label :email_display, "I'd like my email address displayed on my profile page." %><br>
+    <%= f.check_box :email_display, {}, 'true', 'false' %>
   </div>
   <div class="field">
     <%= f.label :zip_code, 'Zip Code' %><br>

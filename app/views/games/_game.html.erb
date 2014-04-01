@@ -1,10 +1,9 @@
 <div class="game_display">
   <p><%= "#{game.start_at.strftime("%a")} #{game.start_at.strftime("%D")} at #{game.start_at.strftime("%l:%M %P")}" %></p>
-  <p>Minimum players:
-    <%= game.capacity.nil? ? 'none' : game.capacity %>
-  </p>
   <p>Skill level:
     <%= game.skill_level.nil? ? 'none' : game.skill_level %>
+    <br>
+    <%= link_to "What's this?", about_path %>
   </p>
   <% unless game.users.include?(current_user) || game.users.count >= 20 %>
     <%= link_to 'join this game', "/games/#{game.id}/add-current", {method: :post} %>

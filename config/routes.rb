@@ -1,5 +1,6 @@
 Baller::Application.routes.draw do
 
+  get '/about', to: 'welcome#about'
   get '/courts/admin-index', to: 'courts#admin_index'
   get '/courts/search', to: 'courts#search'
   get '/games', to: 'games#index'

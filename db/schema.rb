@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(version: 20140329192625) do
   create_table "games", force: true do |t|
     t.datetime "start_at"
     t.datetime "created_at"
-    t.integer  "capacity"
     t.integer  "skill_level"
     t.integer  "creator_id"
     t.integer  "court_id"

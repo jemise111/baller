@@ -12,14 +12,12 @@
     <%= f.datetime_select :start_at, :ampm => true, :minute_step => 15 %>
   </div>
   <div class="field">
-    <%= f.label :capacity, 'Set a minimum number of players for this game to be on? (optional)' %><br>
-    <%= f.number_field :capacity, in: 1..20 %>
-  </div>
-  <div class="field">
     <%= f.label :skill_level, 'Skill level (optional)' %><br>
     <%= f.number_field :skill_level, in: 1..3 %>
+    <%= link_to "What's this?", about_path %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
+  <%= link_to 'back', :back %>
 <% end %>

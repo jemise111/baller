@@ -7,9 +7,6 @@
     <h1>New players have joined your game at <em><%= @game.court.name %></em></h1>
     <div class="game_display">
       <p><%= "#{@game.start_at.strftime("%a")} #{@game.start_at.strftime("%D")} at #{@game.start_at.strftime("%l:%M %P")}" %></p>
-      <p>Minimum players:
-        <%= @game.capacity.nil? ? 'none' : @game.capacity %>
-      </p>
       <p>Skill level:
         <%= @game.skill_level.nil? ? 'none' : @game.skill_level %>
       </p>
@@ -21,7 +18,5 @@
         </ul>
       </div>
     </div>
-    <br>
-    <p>View game online (URL goes here)</p>
   </body>
 </html>

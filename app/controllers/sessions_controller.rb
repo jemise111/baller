@@ -7,7 +7,13 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect_to root_path # change this
+      if session[:return_to]
+        return_path = session[:return_to]
+        session[:return_to] = nil
+        redirect_to return_path
+      else
+        redirect_to root_path # change this
+      end
     else
       flash.now[:login_error] = 'Invalid email and/or password'
       render 'new'
