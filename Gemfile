@@ -58,4 +58,8 @@ gem 'crack'
 # Use Geocoder for location search
 gem 'geocoder'
 
+# Use pry-rails for debugging
 gem 'pry-rails'
+
+# Use paperclip for image upload
+gem 'paperclip', github: 'thoughtbot/paperclip'

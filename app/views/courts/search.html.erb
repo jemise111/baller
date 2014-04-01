@@ -2,8 +2,9 @@
 <% if @result_courts.empty? %>
   <em><%= flash[:no_results] %></em>
 <% end %>
-<% @result_courts.each do |court| %>
+<% @result_courts.each_with_index do |court, i| %>
   <p>
+    <%= "#{@labels[i]}. " %>
     <%= link_to court.name, court %>
     <% if court.games.any? {|game| !game.past? } %>
       (games here!)
@@ -12,4 +13,10 @@
   </p>
 <% end %>
 <br>
+<%= image_tag("http://maps.google.com/maps/api/staticmap?size=512x512&maptype=roadmap
+&#{@marker_coords}
+key=AIzaSyBUAOr0dXo8Oa5nBuDzLDRXYifbUg1kzqk") %>
+<br>
 <%= link_to 'back', :back %>
+
+

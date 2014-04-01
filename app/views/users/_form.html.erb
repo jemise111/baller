@@ -7,6 +7,10 @@
     </ul>
   </div>
   <div class="field">
+    <%= f.label :avatar, 'Upload profile picture' %>
+    <%= f.file_field :avatar %>
+  </div>
+  <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name, required: true %>
   </div>

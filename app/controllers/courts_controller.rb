@@ -59,6 +59,10 @@ class CourtsController < ApplicationController
     @result_courts = Court.all.select do |court|
       court.is_close_to?(latitude, longitude)
     end
+    @labels = ('A'..'Z').to_a
+    @marker_coords = @result_courts.each_with_index.map do |court, i|
+      "markers=label:#{@labels[i]}|#{court.latitude},#{court.longitude}&"
+    end.join('')
     flash.now[:no_results] = 'No courts found'
   end
 
