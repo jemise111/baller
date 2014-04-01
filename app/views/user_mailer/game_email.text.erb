@@ -1,0 +1,8 @@
+New players have joined your game at <%= @game.court.name %>
+======================================================================================
+<%= "#{@game.start_at.strftime("%a")} #{@game.start_at.strftime("%D")} at #{@game.start_at.strftime("%l:%M %P")}" %>
+<% @game.users.each do |user| %>
+  <%= user.name %>
+<% end %>
+
+View game online (URL goes here)

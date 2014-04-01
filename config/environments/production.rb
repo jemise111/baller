@@ -77,4 +77,15 @@ Baller::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Custom mailer settings (not rails defaults)
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              'smtp.gmail.com',
+  port:                 587,
+  domain:               'google.com',
+  user_name:            'ballerNYCco@gmail.com',
+  password:             'RubyRubyRubyRuby',
+  authentication:       'plain',
+  enable_starttls_auto: true  }
 end

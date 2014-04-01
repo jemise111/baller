@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>New players have joined your game at <em><%= @game.court.name %></em></h1>
+    <div class="game_display">
+      <p><%= "#{@game.start_at.strftime("%a")} #{@game.start_at.strftime("%D")} at #{@game.start_at.strftime("%l:%M %P")}" %></p>
+      <p>Minimum players:
+        <%= @game.capacity.nil? ? 'none' : @game.capacity %>
+      </p>
+      <p>Skill level:
+        <%= @game.skill_level.nil? ? 'none' : @game.skill_level %>
+      </p>
+      <div class="game_players">
+        <ul>
+          <% @game.users.each do |user| %>
+            <li><%= user.name %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <p>View game online (URL goes here)</p>
+  </body>
+</html>

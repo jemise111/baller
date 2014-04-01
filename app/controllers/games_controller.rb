@@ -52,6 +52,11 @@ class GamesController < ApplicationController
     game = Game.find(params[:id])
     game.users << current_user
     game.save
+    game.users.each do |user|
+      if user.notifications
+        UserMailer.game_email(user, game).deliver unless user == current_user
+      end
+    end
     redirect_to :back
   end
 
