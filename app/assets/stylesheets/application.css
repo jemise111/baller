@@ -498,6 +498,7 @@ a:hover, a:active {
   background: rgba(196, 100, 29, 0.2);
   border-radius: 10px;
   padding: 10px;
+  margin-bottom: 2px;
   width: 400px;
 }
 
