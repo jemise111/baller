@@ -21,7 +21,7 @@
           <p>
             <%= link_to court.name, court %>
             <% if court.games.any? {|game| !game.past? } %>
-              (games here!)
+              (<span>games here!</span>)
             <% end %>
           </p>
           <p><%= court.location %></p>
