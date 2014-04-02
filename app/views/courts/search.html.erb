@@ -1,22 +1,25 @@
-<h1>Courts near <%= params[:q] %></h1>
-<% if @result_courts.empty? %>
-  <em><%= flash[:no_results] %></em>
-<% end %>
-<% @result_courts.each_with_index do |court, i| %>
-  <p>
-    <%= "#{@labels[i]}. " %>
-    <%= link_to court.name, court %>
-    <% if court.games.any? {|game| !game.past? } %>
-      (games here!)
-    <% end %>
-    <br><%= court.location %>
-  </p>
-<% end %>
-<br>
-<%= image_tag("http://maps.google.com/maps/api/staticmap?size=512x512&maptype=roadmap
-&#{@marker_coords}
-key=AIzaSyBUAOr0dXo8Oa5nBuDzLDRXYifbUg1kzqk") %>
-<br>
-<%= link_to 'back', :back %>
-
-
+<div class="welcome">
+  <div class="wrapper clearfix">
+    <h1>Courts near <%= params[:q] %></h1>
+    <div class="search_results">
+      <% if @result_courts.empty? %>
+        <em><%= flash[:no_results] %></em>
+      <% end %>
+      <% @result_courts.keys.first(26).sort.each_with_index do |court_distance, i| %>
+        <p>
+          <% court = @result_courts[court_distance] %>
+          <%= "#{@labels[i]}. " %>
+          <%= link_to court.name, court %>
+          <% if court.games.any? {|game| !game.past? } %>
+            (games here!)
+          <% end %>
+        </p>
+        <p><%= court.location %></p>
+      <% end %>
+      <%= link_to 'back', :back %>
+    </div>
+    <div class="static_map">
+      <%= image_tag("http://maps.google.com/maps/api/staticmap?size=512x512&maptype=roadmap&#{@marker_coords}key=AIzaSyBUAOr0dXo8Oa5nBuDzLDRXYifbUg1kzqk") %>
+    </div>
+  </div>
+</div>

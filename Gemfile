@@ -63,3 +63,7 @@ gem 'pry-rails'
 
 # Use paperclip for image upload
 gem 'paperclip', github: 'thoughtbot/paperclip'
+
+# Use OAuth and JSON with Twitter API
+gem 'oauth'
+gem 'json'

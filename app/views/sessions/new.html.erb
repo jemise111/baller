@@ -1,16 +1,26 @@
-<%= flash[:auth_error] %>
-
-<h1>Login</h1>
-
-<%= form_tag sessions_path do %>
-  <%= label_tag :email %>
-  <%= text_field_tag :email %>
-
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
-
-  <%= submit_tag :login %>
-<% end %>
-
-<%= flash[:login_error] %>
-<p>Don't have an account? <%= link_to 'Create one!', new_user_path %></p>
+<div class="welcome">
+  <div class="user_form login_form">
+    <h1>Login</h1>
+    <%= form_tag sessions_path do %>
+      <div class="field">
+        <p class="error_text"><%= flash[:auth_error] %></p><br>
+        <%= label_tag :email %><br>
+        <%= text_field_tag :email %>
+      </div>
+      <br>
+      <div class="field">
+        <%= label_tag :password %><br>
+        <%= password_field_tag :password %>
+      </div>
+      <div class="actions">
+        <%= submit_tag :login %>
+      </div>
+    <% end %>
+    <div class="field">
+      <br>
+      <p class="error_text"><%= flash[:login_error] %></p>
+      <br>
+      <p>Don't have an account? <%= link_to 'Create one!', new_user_path %></p>
+    </div>
+  </div>
+</div>

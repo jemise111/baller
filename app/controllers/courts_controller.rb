@@ -50,18 +50,23 @@ class CourtsController < ApplicationController
     @courts = Court.all
   end
 
-  # handle when zip code is invalid
+  # search could be DRY'd up
 
   def search
     result = Geocoder.search(params[:q].to_i).first
     latitude = result.latitude
     longitude = result.longitude
-    @result_courts = Court.all.select do |court|
-      court.is_close_to?(latitude, longitude)
+    @result_courts = {}
+    Court.all.each do |court|
+      if court.distance_to(latitude, longitude) < Court::CLOSE_DISTANCE
+        @result_courts[court.distance_to(latitude, longitude)] = court
+      end
     end
     @labels = ('A'..'Z').to_a
-    @marker_coords = @result_courts.each_with_index.map do |court, i|
-      "markers=label:#{@labels[i]}|#{court.latitude},#{court.longitude}&"
+    @marker_coords = ''
+    @result_courts.keys.first(26).sort.each_with_index.map do |court_distance, i|
+      court = @result_courts[court_distance]
+      @marker_coords << "markers=label:#{@labels[i]}|#{court.latitude},#{court.longitude}&"
     end.join('')
     flash.now[:no_results] = 'No courts found'
   end

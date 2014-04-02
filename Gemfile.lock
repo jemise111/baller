@@ -78,6 +78,7 @@ GEM
     mime-types (1.25.1)
     minitest (4.7.5)
     multi_json (1.9.2)
+    oauth (0.4.7)
     pg (0.17.1)
     polyglot (0.3.4)
     pry (0.9.12.6)
@@ -171,7 +172,9 @@ DEPENDENCIES
   geocoder
   jbuilder (~> 1.2)
   jquery-rails
+  json
   meta_request
+  oauth
   paperclip!
   pg
   pry-rails

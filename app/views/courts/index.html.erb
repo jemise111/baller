@@ -1,29 +1,37 @@
-<h2>Select a borough</h2>
-<ul class='horizontal_list'>
-  <% @boroughs.each do |borough| %>
-    <li><%= link_to_unless params[:b] == borough, borough, params.merge({b: borough, p: 1}) %></li>
-  <% end %>
-</ul>
-
-<p>Or search for courts:</p>
-<%= form_tag("/courts/search", method: "get") do %>
-  <%= text_field_tag :q, nil, placeholder: 'Zip Code' %>
-  <%= submit_tag("Search") %>
-<% end %>
-
-<% unless params[:b].nil? %>
-  <% @display_courts.each do |court| %>
-    <p>
-      <%= link_to court.name, court %>
-      <% if court.games.any? {|game| !game.past? } %>
-        (games here!)
+<div class="welcome">
+  <div class="wrapper borough_wrapper">
+    <div class="borough_select">
+      <h2>Select a borough:</h2>
+      <ul class='horizontal_list boroughs'>
+        <% @boroughs.each do |borough| %>
+          <li><%= link_to_unless params[:b] == borough, borough, params.merge({b: borough, p: 1}) %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="borough_search">
+      <h2>Or search for courts:</h2>
+      <%= form_tag("/courts/search", method: "get") do %>
+        <%= text_field_tag :q, nil, placeholder: 'Zip Code', class: 'zip_input' %>
+        <%= submit_tag("Search") %>
       <% end %>
-      <br><%= court.location %>
-    </p>
-  <% end %>
-  <p>Page:
-    <% (1..@pages).each do |page| %>
-      <%= link_to_unless_current page, params.merge({b: params[:b], p: page}) %>
-    <% end %>
-  </p>
-<% end %>
+    </div>
+    <div class="click_results">
+      <% unless params[:b].nil? %>
+        <% @display_courts.each do |court| %>
+          <p>
+            <%= link_to court.name, court %>
+            <% if court.games.any? {|game| !game.past? } %>
+              (games here!)
+            <% end %>
+          </p>
+          <p><%= court.location %></p>
+        <% end %>
+        <p class="pagination">Page:
+          <% (1..@pages).each do |page| %>
+            <%= link_to_unless_current page, params.merge({b: params[:b], p: page}) %>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

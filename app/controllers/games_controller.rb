@@ -13,11 +13,15 @@ class GamesController < ApplicationController
     @game = @court.games.new
   end
 
-  # add a game creator and add this person to this game, separately
   def create
     @game = Court.find(params[:court_id]).games.create(game_params)
     @game.update(creator_id: session[:user_id], creator_id: session[:user_id])
     @game.users << User.find(session[:user_id])
+    # Send Tweet
+    tweet_content = "New pick up game on #{@game.start_at.strftime("%a")} #{@game.start_at.strftime("%D")} at #{@game.start_at.strftime("%l:%M %P")} at #{@game.court.name}! Wanna ball? http://www.ballernycco.com/courts/#{@game.court.id}"
+    tweet_lat = @game.court.latitude
+    tweet_long = @game.court.longitude
+    Game.send_new_game_tweet(tweet_content, tweet_lat, tweet_long)
     redirect_to @game.court
   end
 
@@ -52,6 +56,7 @@ class GamesController < ApplicationController
     game = Game.find(params[:id])
     game.users << current_user
     game.save
+    # Send email
     game.users.each do |user|
       if user.notifications
         UserMailer.game_email(user, game).deliver unless user == current_user

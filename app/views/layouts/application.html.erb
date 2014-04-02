@@ -3,30 +3,33 @@
   <head>
     <title>Baller</title>
     <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
   </head>
   <body>
     <div class="header">
-      <h1>BallerNYC</h1>
+      <%= link_to_unless_current image_tag('logo.png', class: 'logo'), root_path %>
+      <nav>
+        <ul class='horizontal_list'>
+          <li><%= link_to_unless_current 'Home', root_path %></li>
+          <li><%= link_to_unless_current 'Courts', courts_path %></li>
+          <% if current_admin %>
+            <li><%= link_to 'Admin Tools', users_path %></li>
+          <% end %>
+          <% if current_user %>
+            <li><%= link_to_unless_current 'Logout', logout_path %></li>
+            <li>
+              <%= link_to_unless_current current_user.name, current_user %>
+              <%= image_tag(current_user.avatar.url(:thumb)) unless current_user.avatar_file_name.nil? %>
+            </li>
+          <% else %>
+            <li><%= link_to_unless_current 'Login', login_path %></li>
+          <% end %>
+        </ul>
+      </nav>
     </div>
-    <nav>
-      <ul class='horizontal_list'>
-        <li><%= link_to_unless_current 'Home', root_path %></li>
-        <% if current_user %>
-          <li><%= link_to_unless_current current_user.name, current_user %></li>
-          <li><%= link_to_unless_current 'Logout', logout_path %></li>
-        <% else %>
-          <li><%= link_to_unless_current 'Login', login_path %></li>
-        <% end %>
-        <li><%= link_to_unless_current 'Courts', courts_path %></li>
-        <% if current_admin %>
-          <li><%= link_to 'Admin Tools', users_path %></li>
-        <% end %>
-      </ul>
-    </nav>
-    <hr>
-  <%= yield %>
-
+    <div class="divider"></div>
+    <%= yield %>
   </body>
 </html>

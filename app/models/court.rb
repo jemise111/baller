@@ -14,7 +14,7 @@ class Court < ActiveRecord::Base
   validates(:latitude, numericality: true)
   validates(:longitude, numericality: true)
 
-  def is_close_to?(lat, lon)
+  def distance_to(lat, lon)
     earthRadius = 6371 # Earth's radius in KM
 
         # convert degrees to radians
@@ -40,6 +40,6 @@ class Court < ActiveRecord::Base
 
     distance = earthRadius * c
 
-    distance < CLOSE_DISTANCE
+    return distance # in kilometers
   end
 end

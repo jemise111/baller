@@ -1,12 +1,11 @@
 require 'spec_helper'
 
 describe Game do
-  subject(:game) { Game.create(start_at: Time.parse("6:00"), capacity: 8, skill_level: 3) }
+  subject(:game) { Game.create(start_at: Time.parse("6:00"), skill_level: 3) }
   describe '.new' do
-    it 'should be created with a start_at, created_at time, skill_level, and capacity' do
+    it 'should be created with a start_at, created_at time, skill_level' do
       expect(game.start_at).to eq(Time.parse("6:00"))
       expect(game.created_at).to be_within(1).of(Time.now)
-      expect(game.capacity).to eq(8)
       expect(game.skill_level).to eq(3)
     end
   end
