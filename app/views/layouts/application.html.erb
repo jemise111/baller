@@ -14,6 +14,7 @@
         <ul class='horizontal_list'>
           <li><%= link_to_unless_current 'Home', root_path %></li>
           <li><%= link_to_unless_current 'Courts', courts_path %></li>
+          <li><%= link_to_unless_current 'About', about_path %></li>
           <% if current_admin %>
             <li><%= link_to 'Admin Tools', users_path %></li>
           <% end %>
