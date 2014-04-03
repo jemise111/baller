@@ -67,6 +67,3 @@ gem 'paperclip', github: 'thoughtbot/paperclip'
 # Use OAuth and JSON with Twitter API
 gem 'oauth'
 gem 'json'
-
-# Use rails 12factor for heroku
-gem 'rails_12factor', group: :production

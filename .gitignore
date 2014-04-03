@@ -1,1 +1,2 @@
 tmp/data/meta_request/*.json
+tmp/pids/server.pid
