@@ -68,4 +68,6 @@ gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'oauth'
 gem 'json'
 
-gem 'rails_12factor'
+group :production do
+    gem 'rails_12factor'
+end
