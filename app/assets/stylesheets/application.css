@@ -510,6 +510,19 @@ a:hover, a:active {
   padding: 2px 0 2px 250px;
 }
 
+.about p {
+  padding: 20px 0 10px 50px;
+}
+
+.about h2 {
+  padding: 20px;
+  width: 600px;
+}
+
+.about li {
+  padding: 0 0 5px 50px;
+}
+
 
 
 /*
@@ -608,4 +621,4 @@ h2 {
   background-color: yellow;
 }
 
-*/
+i*/
