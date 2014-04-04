@@ -87,28 +87,27 @@ a:hover, a:active {
 
 .header {
   font-size: 20px;
-  height: 170px;
+  margin-top: -20px;
+  min-width: 1060px;
+  min-height: 170px;
 }
 
 .header nav {
-  border: 1px solid blue;
-  min-height: 50px;
-  min-width: 700px;
-  margin-top: -40px;
+  margin: -70px 20px 0 auto;
   text-align: right;
+  max-width: 630px;
 }
 
-.divider {
+/*.divider {
   border-top: 10px solid black;
   width: 1300px;
-}
+}*/
 
 .welcome {
   background: url('background.jpg') no-repeat;
   background-size: cover;
-  min-height: 800px;
+  min-height: 600px;
   padding: 50px 0 20px 0;
-  width: 1280px;
 }
 
 .welcome h1 {
@@ -307,12 +306,6 @@ a:hover, a:active {
 
     @media only screen and (min-width: 768px) and (max-width: 959px) {
 
-
-      .header {
-        min-width: 1000px;
-      }
-
-
     }
 
 
@@ -322,9 +315,26 @@ a:hover, a:active {
     /* Note: Design for a width of 320px */
 
     @media only screen and (max-width: 767px) {
-      .header img {
+      .header {
+        min-width: 650px;
+      }
+
+      .header nav {
+        text-align: center;
+      }
+
+      .header nav ul {
+        margin: 40px auto 0 auto;
+      }
+
+      .header .logo {
         display: block;
         margin: 0 auto;
+        width: 400px;
+      }
+
+      .welcome {
+        min-width: 650px;
       }
     }
 
@@ -335,10 +345,6 @@ a:hover, a:active {
     /* Note: Design for a width of 480px */
 
     @media only screen and (min-width: 480px) and (max-width: 767px) {
-
-        .header {
-          margin: 0 auto;
-        }
     }
 
 
