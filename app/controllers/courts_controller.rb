@@ -18,6 +18,7 @@ class CourtsController < ApplicationController
 
   def show
     @court = Court.find(params[:id])
+    @map_url = GoogleMap.embed_map_url(@court)
   end
 
   # ============= Admin Tools ================
