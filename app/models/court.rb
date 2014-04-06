@@ -4,13 +4,8 @@ class Court < ActiveRecord::Base
 
   has_many(:comments, dependent: :delete_all)
   has_many(:games, dependent: :delete_all)
-  validates(:name, presence: true)
-  validates(:location, presence: true)
-  validates(:borough, presence: true)
-  # DRY this up
-  validates(:num_courts, numericality: true)
-  validates(:latitude, numericality: true)
-  validates(:longitude, numericality: true)
+  validates(:name, :location, :borough, presence: true)
+  validates(:num_courts, :latitude, :longitude, numericality: true)
 
   def self.zip_code_search(zip_code)
     lat_lon = LocationSearch.lat_lon_from_zip_code(zip_code)
