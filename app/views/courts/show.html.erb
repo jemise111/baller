@@ -23,7 +23,7 @@
     </div>
     <div class="court_game">
       <h2>Games:</h2><br>
-      <% unless @court.games.empty? %>
+      <% if @court.has_current_games? %>
         <% @court.games.each do |game| %>
           <%= render partial: 'games/game', locals: {game: game} unless game.past?%>
         <% end %>
