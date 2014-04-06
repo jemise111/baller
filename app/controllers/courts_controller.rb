@@ -51,16 +51,12 @@ class CourtsController < ApplicationController
     @courts = Court.all
   end
 
-  # search could be DRY'd up
-
   def search
-    @result_courts = Court.zip_code_search(params[:q].to_i)
+    # @result_courts is a hash. { distance_to_court => court }
+    courts = Court.zip_code_search(params[:q].to_i)
     @labels = ('A'..'Z').to_a
-    @marker_coords = ''
-    @result_courts.keys.first(26).sort.each_with_index.map do |court_distance, i|
-      court = @result_courts[court_distance]
-      @marker_coords << "markers=label:#{@labels[i]}|#{court.latitude},#{court.longitude}&"
-    end.join('')
+    @result_courts = courts.values.sort { |a, b| courts.key(a) <=> courts.key(b) }.first(26)
+    @map_url = GoogleMap.static_map_url(@labels, @result_courts)
     flash.now[:no_results] = 'No courts found'
   end
 
