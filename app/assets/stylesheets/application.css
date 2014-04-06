@@ -91,7 +91,6 @@ a:hover, a:active {
 }
 
 .header nav {
-  border: 1px solid blue;
   min-height: 50px;
   min-width: 700px;
   margin-top: -40px;

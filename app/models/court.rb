@@ -1,5 +1,4 @@
 class Court < ActiveRecord::Base
-
   # maximum distance in km for court to be 'close' to a zip code
   CLOSE_DISTANCE = 2
 
@@ -7,14 +6,26 @@ class Court < ActiveRecord::Base
   has_many(:games, dependent: :delete_all)
   validates(:name, presence: true)
   validates(:location, presence: true)
-  validates(:borough, presence: true,
-                     inclusion: ['Bronx', 'Queens', 'Brooklyn', 'Manhattan', 'Staten Island'])
+  validates(:borough, presence: true)
   # DRY this up
   validates(:num_courts, numericality: true)
   validates(:latitude, numericality: true)
   validates(:longitude, numericality: true)
 
-  def distance_to(lat, lon)
+  def self.zip_code_search(zip_code)
+    lat_lon = LocationSearch.lat_lon_from_zip_code(zip_code)
+    result_courts = {}
+    self.all.each do |court|
+      if court.distance_to(lat_lon) < CLOSE_DISTANCE
+        result_courts[court.distance_to(lat_lon)] = court
+      end
+    end
+    result_courts
+  end
+
+  def distance_to(lat_lon)
+    lat = lat_lon.first
+    lon = lat_lon.last
     earthRadius = 6371 # Earth's radius in KM
 
         # convert degrees to radians

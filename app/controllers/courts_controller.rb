@@ -9,6 +9,7 @@ class CourtsController < ApplicationController
   def index
     @boroughs = Court.pluck(:borough).uniq
     @courts = Court.all
+    # A lot of logic here but feels like this belongs in controller
     unless params[:b].nil?
       courts_in_borough = Court.where(borough: params[:b])
       @display_courts = courts_in_borough.limit(MAX_TO_DISPLAY).offset((params[:p].to_i - 1) * 25)
@@ -53,15 +54,7 @@ class CourtsController < ApplicationController
   # search could be DRY'd up
 
   def search
-    result = Geocoder.search(params[:q].to_i).first
-    latitude = result.latitude
-    longitude = result.longitude
-    @result_courts = {}
-    Court.all.each do |court|
-      if court.distance_to(latitude, longitude) < Court::CLOSE_DISTANCE
-        @result_courts[court.distance_to(latitude, longitude)] = court
-      end
-    end
+    @result_courts = Court.zip_code_search(params[:q].to_i)
     @labels = ('A'..'Z').to_a
     @marker_coords = ''
     @result_courts.keys.first(26).sort.each_with_index.map do |court_distance, i|
