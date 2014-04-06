@@ -12,7 +12,7 @@
 <% end %>
 
 <h3>Game History</h3>
-<% @user.games.group_by { |game| game.court }.each do |court, games| %>
+<% @user_games_grouped.each do |court, games| %>
   <p><em><%= court.name %></em></p>
   <% games.each do |game| %>
     <%= render partial: 'games/game', locals: {game: game} %>

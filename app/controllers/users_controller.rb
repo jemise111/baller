@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   # can a user view other user's profiles? up for debate
   def show
     @user = User.find(params[:id])
+    @user_games_grouped = @user.games.group_by { |game| game.court }
   end
 
   def new
