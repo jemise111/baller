@@ -8,7 +8,6 @@ class CommentsController < ApplicationController
     @unapproved_comments = Comment.where(approved: false)
   end
 
-  # DRY up redirects
   def new
     @court = Court.find(params[:court_id])
     @comment = @court.comments.new

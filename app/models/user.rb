@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
   # validates_attachment(:avatar, :presence => true,
   #   :content_type => { :content_type => "image/jpg" },
   #   :size => { :in => 0..10.kilobytes }
+
+  def send_game_email(game)
+    UserMailer.game_email(self, game).deliver if self.notifications
+  end
 end

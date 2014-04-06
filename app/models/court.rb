@@ -7,6 +7,7 @@ class Court < ActiveRecord::Base
   validates(:name, :location, :borough, presence: true)
   validates(:num_courts, :latitude, :longitude, numericality: true)
 
+  # untested
   def self.zip_code_search(zip_code)
     lat_lon = LocationSearch.lat_lon_from_zip_code(zip_code)
     result_courts = {}
