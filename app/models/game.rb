@@ -2,6 +2,7 @@ class Game < ActiveRecord::Base
   # set up dependency?
   has_and_belongs_to_many(:users)
   belongs_to(:court)
+  validates(:start_at, presence: true)
 
   def send_game_tweet
     day_date = self.start_at.strftime("%a %D")

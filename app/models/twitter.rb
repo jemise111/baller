@@ -1,3 +1,5 @@
+# This should really be a module
+
 class Twitter
 
   def self.send_tweet(content, lat, lon)

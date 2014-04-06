@@ -49,4 +49,8 @@ class Court < ActiveRecord::Base
 
     return distance # in kilometers
   end
+
+  def has_current_games?
+    self.games.any? {|game| !game.past? }
+  end
 end

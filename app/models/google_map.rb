@@ -1,3 +1,5 @@
+# This should really be a module
+
 class GoogleMap
   URL = "http://maps.google.com/maps/api/staticmap?size=512x512&maptype=roadmap&key=AIzaSyBUAOr0dXo8Oa5nBuDzLDRXYifbUg1kzqk"
 

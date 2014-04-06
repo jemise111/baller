@@ -20,7 +20,7 @@
         <% @display_courts.each do |court| %>
           <p>
             <%= link_to court.name, court %>
-            <% if court.games.any? {|game| !game.past? } %>
+            <% if court.has_current_games? %>
               (<span>games here!</span>)
             <% end %>
           </p>
