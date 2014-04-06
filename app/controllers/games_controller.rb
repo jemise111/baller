@@ -15,13 +15,9 @@ class GamesController < ApplicationController
 
   def create
     @game = Court.find(params[:court_id]).games.create(game_params)
-    @game.update(creator_id: session[:user_id], creator_id: session[:user_id])
+    @game.update(creator_id: session[:user_id])
     @game.users << User.find(session[:user_id])
-    # Send Tweet
-    tweet_content = "New pick up game on #{@game.start_at.strftime("%a")} #{@game.start_at.strftime("%D")} at #{@game.start_at.strftime("%l:%M %P")} at #{@game.court.name}! Wanna ball? http://www.ballernycco.com/courts/#{@game.court.id}"
-    tweet_lat = @game.court.latitude
-    tweet_long = @game.court.longitude
-    Game.send_new_game_tweet(tweet_content, tweet_lat, tweet_long)
+    @game.send_game_tweet
     redirect_to @game.court
   end
 
