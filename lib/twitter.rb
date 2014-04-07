@@ -1,6 +1,4 @@
-# This should really be a module
-
-class Twitter
+module Twitter
 
   def self.send_tweet(content, lat, lon)
     consumer_key = OAuth::Consumer.new(

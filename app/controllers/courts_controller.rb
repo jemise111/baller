@@ -18,7 +18,7 @@ class CourtsController < ApplicationController
 
   def show
     @court = Court.find(params[:id])
-    @map_url = GoogleMap.embed_map_url(@court)
+    @map_url = GoogleMap::embed_map_url(@court)
   end
 
   # ============= Admin Tools ================
@@ -56,7 +56,7 @@ class CourtsController < ApplicationController
     courts = Court.zip_code_search(params[:q].to_i)
     @labels = ('A'..'Z').to_a
     @result_courts = courts.values.sort { |a, b| courts.key(a) <=> courts.key(b) }.first(26)
-    @map_url = GoogleMap.static_map_url(@labels, @result_courts)
+    @map_url = GoogleMap::static_map_url(@labels, @result_courts)
     flash.now[:no_results] = 'No courts found'
   end
 

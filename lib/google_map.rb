@@ -1,6 +1,4 @@
-# This should really be a module
-
-class GoogleMap
+module GoogleMap
   STATIC_URL = "http://maps.google.com/maps/api/staticmap?key=#{ENV["GOOGLE_API_KEY"]}&size=512x512&maptype=roadmap"
   EMBED_URL  = "https://www.google.com/maps/embed/v1/view?key=#{ENV["GOOGLE_API_KEY"]}&zoom=19&maptype=satellite"
 

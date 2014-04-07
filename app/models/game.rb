@@ -6,7 +6,7 @@ class Game < ActiveRecord::Base
 
   def send_game_tweet
     content = "New pick up game on #{time_info} at #{self.court.name}! Wanna ball? http://www.ballernycco.com/courts/#{self.court.id}"
-    Twitter.send_tweet(content, self.court.latitude, self.court.longitude)
+    Twitter::send_tweet(content, self.court.latitude, self.court.longitude)
   end
 
   def past?
