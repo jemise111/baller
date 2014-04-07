@@ -16,4 +16,10 @@ describe Game do
       expect(game.past?).to eq(false)
     end
   end
+  describe "#time_info" do
+    it "should return string containing game's datetime information" do
+      my_game = Game.create(start_at: DateTime.new(2014, 4, 7, 10, 0, 0))
+      expect(my_game.time_info).to eq("Mon 04/07/14 at 10:00 am")
+    end
+  end
 end

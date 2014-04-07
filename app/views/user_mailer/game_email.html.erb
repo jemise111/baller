@@ -6,7 +6,7 @@
   <body>
     <h1>New players have joined your game at <em><%= @game.court.name %></em></h1>
     <div class="game_display">
-      <p><%= "#{@game.start_at.strftime("%a")} #{@game.start_at.strftime("%D")} at #{@game.start_at.strftime("%l:%M %P")}" %></p>
+      <p><%= "#{@game.time_info}" %></p>
       <p>Skill level:
         <%= @game.skill_level.nil? ? 'none' : @game.skill_level %>
       </p>

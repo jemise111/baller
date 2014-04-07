@@ -1,5 +1,5 @@
 <div class="game">
-  <p><%= "#{game.start_at.strftime("%a")} #{game.start_at.strftime("%D")} at #{game.start_at.strftime("%l:%M %P")}" %></p>
+  <p><%= "#{game.time_info}" %></p>
   <p>Skill level:
     <%= game.skill_level.nil? ? 'none' : game.skill_level %>
     <%= link_to "What's this?", about_path %>
