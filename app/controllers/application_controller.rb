@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_authentication
+    # Check out request.referrer
     session[:return_to] = request.url
     # This is buggy. Really need to do a flash[:auth_error] but that's causing problems
     flash[:auth_error] = 'You must be logged in to view that page'

@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
   def destroy
     flash[:auth_error] = nil
     session[:user_id] = nil
+    # Destroy the session[return_to]
     redirect_to login_path
   end
 end
