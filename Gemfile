@@ -61,8 +61,10 @@ gem 'geocoder'
 # Use pry-rails for debugging
 gem 'pry-rails'
 
-# Use paperclip for image upload
+# Use paperclip with AWS S3 for image upload
 gem 'paperclip', github: 'thoughtbot/paperclip'
+gem 'aws-sdk'
+
 
 # Use OAuth and JSON with Twitter API
 gem 'oauth'
@@ -71,3 +73,4 @@ gem 'json'
 group :production do
     gem 'rails_12factor'
 end
+
