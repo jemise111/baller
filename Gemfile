@@ -70,8 +70,5 @@ gem 'aws-sdk'
 gem 'oauth'
 gem 'json'
 
-group :production do
-    gem 'rails_12factor'
-end
-
+# Use newrelic for monitoring and auto pinging
 gem 'newrelic_rpm'
