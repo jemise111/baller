@@ -1,5 +1,12 @@
 <div class="welcome">
-  <div class="wrapper borough_wrapper">
+  <div class="wrapper borough_wrapper clearfix">
+    <div class="borough_search">
+      <h2>Search for courts:</h2>
+      <%= form_tag("/courts/search", method: "get") do %>
+        <%= text_field_tag :q, nil, placeholder: 'Zip Code', class: 'zip_input' %>
+        <%= submit_tag("Search") %>
+      <% end %>
+    </div>
     <div class="borough_select">
       <h2>Select a borough:</h2>
       <ul class='horizontal_list boroughs'>
@@ -7,31 +14,24 @@
           <li><%= link_to_unless params[:b] == borough, borough, params.merge({b: borough, p: 1}) %></li>
         <% end %>
       </ul>
-    </div>
-    <div class="borough_search">
-      <h2>Or search for courts:</h2>
-      <%= form_tag("/courts/search", method: "get") do %>
-        <%= text_field_tag :q, nil, placeholder: 'Zip Code', class: 'zip_input' %>
-        <%= submit_tag("Search") %>
-      <% end %>
-    </div>
-    <div class="click_results">
-      <% unless params[:b].nil? %>
-        <% @display_courts.each do |court| %>
-          <p>
-            <%= link_to court.name, court %>
-            <% if court.games.any? {|game| !game.past? } %>
-              (<span>games here!</span>)
+      <div class="click_results">
+        <% unless params[:b].nil? %>
+          <% @display_courts.each do |court| %>
+            <p>
+              <%= link_to court.name, court %>
+              <% if court.games.any? {|game| !game.past? } %>
+                (<span>games here!</span>)
+              <% end %>
+            </p>
+            <p><%= court.location %></p>
+          <% end %>
+          <p class="pagination">Page:
+            <% (1..@pages).each do |page| %>
+              <%= link_to_unless_current page, params.merge({b: params[:b], p: page}) %>
             <% end %>
           </p>
-          <p><%= court.location %></p>
         <% end %>
-        <p class="pagination">Page:
-          <% (1..@pages).each do |page| %>
-            <%= link_to_unless_current page, params.merge({b: params[:b], p: page}) %>
-          <% end %>
-        </p>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

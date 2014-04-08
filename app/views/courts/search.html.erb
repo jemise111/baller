@@ -1,6 +1,9 @@
 <div class="welcome">
   <div class="wrapper clearfix">
     <h1>Courts near <%= params[:q] %></h1>
+    <div class="static_map">
+      <%= image_tag("http://maps.google.com/maps/api/staticmap?size=512x512&maptype=roadmap&#{@marker_coords}key=AIzaSyBUAOr0dXo8Oa5nBuDzLDRXYifbUg1kzqk") %>
+    </div>
     <div class="search_results">
       <% if @result_courts.empty? %>
         <em><%= flash[:no_results] %></em>
@@ -16,10 +19,8 @@
         </p>
         <p><%= court.location %></p>
       <% end %>
+      <br>
       <%= link_to 'back', :back %>
-    </div>
-    <div class="static_map">
-      <%= image_tag("http://maps.google.com/maps/api/staticmap?size=512x512&maptype=roadmap&#{@marker_coords}key=AIzaSyBUAOr0dXo8Oa5nBuDzLDRXYifbUg1kzqk") %>
     </div>
   </div>
 </div>

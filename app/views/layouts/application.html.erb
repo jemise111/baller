@@ -21,7 +21,7 @@
           <% if current_user %>
             <li><%= link_to_unless_current 'Logout', logout_path %></li>
             <li>
-              <%= link_to_unless_current current_user.name, current_user %>
+              <%= link_to_unless_current current_user.name.split.first, current_user %>
               <%= image_tag(current_user.avatar.url(:thumb)) unless current_user.avatar_file_name.nil? %>
             </li>
           <% else %>
