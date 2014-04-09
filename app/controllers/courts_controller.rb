@@ -1,6 +1,6 @@
 class CourtsController < ApplicationController
 
-  before_action :require_authentication, only: [:show]
+  # before_action :require_authentication, only: [:show]
   before_action :require_admin_authentication, only: [:admin_index, :new, :create, :update, :edit, :destroy]
 
   # Keep under minimum for courts in Staten Island
