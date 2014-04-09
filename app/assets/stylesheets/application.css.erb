@@ -1,54 +1,19 @@
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block;
-}
-body {
-  line-height: 1;
-}
-ol, ul {
-  list-style: none;
-}
-blockquote, q {
-  quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
 
 /*
-* Skeleton V1.2
+* Skeleton V1.2 (modified)
 * Copyright 2011, Dave Gamache
 * www.getskeleton.com
 * Free to use under the MIT license.
@@ -59,12 +24,10 @@ table {
 
 /* Table of Contents
 ==================================================
-    #Base 960 Grid
     #Tablet (Portrait)
     #Mobile (Portrait)
     #Mobile (Landscape)
     #Clearing */
-
 
 
 /* #Base 960 Grid
@@ -87,27 +50,34 @@ a:hover, a:active {
 
 .header {
   font-size: 20px;
-  height: 170px;
+  margin-top: -20px;
+  min-width: 1060px;
+  min-height: 170px;
 }
 
 .header nav {
+/*<<<<<<< HEAD:app/assets/stylesheets/application.css
   min-height: 50px;
   min-width: 700px;
   margin-top: -40px;
+=======*/
+  margin: -70px 20px 0 auto;
+/*>>>>>>> css_experiments:app/assets/stylesheets/application.css.erb*/
   text-align: right;
+  max-width: 700px;
 }
 
-.divider {
+/*.divider {
   border-top: 10px solid black;
   width: 1300px;
-}
+}*/
 
 .welcome {
   background: url('background.jpg') no-repeat;
   background-size: cover;
-  min-height: 800px;
-  padding: 50px 0 20px 0;
-  width: 1280px;
+  min-height: 600px;
+  min-width: 1060px;
+  padding: 50px;
 }
 
 .welcome h1 {
@@ -117,7 +87,7 @@ a:hover, a:active {
   text-align: center;
 }
 
-.user_form {
+.myform {
   background: white;
   border: 5px solid black;
   min-height: 300px;
@@ -125,7 +95,7 @@ a:hover, a:active {
   padding: 10px 0;
 }
 
-.user_form h1 {
+.myform h1 {
   border-bottom: 5px solid black;
   text-align: center;
   font-size: 36px;
@@ -137,6 +107,10 @@ a:hover, a:active {
 }
 
 .new_form {
+  width: 600px;
+}
+
+.game_form {
   width: 600px;
 }
 
@@ -173,15 +147,14 @@ a:hover, a:active {
 
 .wrapper {
   background: white;
-  padding: 20px;
+  border-radius: 10px;
   margin: 0 auto;
   min-height: 700px;
-  width: auto;
+  padding: 20px;
 }
 
 .wrapper h2 {
   font-size: 36px;
-  width: 400px;
 }
 
 .borough_select {
@@ -189,9 +162,8 @@ a:hover, a:active {
 }
 
 .boroughs {
-  font-size: 24px;
+  font-size: 22px;
   margin: 20px;
-  width: 600px;
 }
 
 .borough_search {
@@ -200,6 +172,7 @@ a:hover, a:active {
 
 .borough_wrapper form {
   margin: 20px 30px;
+  min-width: inherit;
 }
 
 .zip_input {
@@ -208,11 +181,16 @@ a:hover, a:active {
 }
 
 .click_results {
-  padding: 100px 0 0 80px;
+  font-size: 16px;
+  margin: 0 40px;
+}
+
+.click_results p:nth-child(odd) {
+  padding: 2px 0;
 }
 
 .click_results p:nth-child(even) {
-  padding: 5px 0 20px 10px;
+  padding: 0 0 10px 0;
 }
 
 .click_results span {
@@ -225,9 +203,9 @@ a:hover, a:active {
 }
 
 .search_results {
+  font-size: 16px;
   float: left;
   padding: 20px 0 20px 50px;
-  width: 400px;
 }
 
 .search_results p:nth-child(even) {
@@ -306,12 +284,6 @@ a:hover, a:active {
 
     @media only screen and (min-width: 768px) and (max-width: 959px) {
 
-
-      .header {
-        min-width: 1000px;
-      }
-
-
     }
 
 
@@ -321,9 +293,56 @@ a:hover, a:active {
     /* Note: Design for a width of 320px */
 
     @media only screen and (max-width: 767px) {
-      .header img {
+      .header {
+        min-width: 710px;
+      }
+
+      .header nav {
+        min-width: inherit;
+        text-align: center;
+      }
+
+      .header nav ul {
+        margin: 40px auto 0 auto;
+      }
+
+      .header .logo {
         display: block;
         margin: 0 auto;
+        width: 400px;
+      }
+
+      .welcome {
+        min-width: 650px;
+      }
+
+      .wrapper {
+        text-align: center;
+      }
+
+      .borough_select {
+        float: none;
+      }
+
+      .borough_search {
+        float: none;
+      }
+
+      .click_results {
+        padding: none;
+      }
+
+      .click_results p:nth-child(even) {
+        padding: none;
+      }
+
+      .search_results {
+        float: none;
+        padding: 10px 0 0 0;
+      }
+
+      .static_map {
+        float: none;
       }
     }
 
@@ -334,10 +353,6 @@ a:hover, a:active {
     /* Note: Design for a width of 480px */
 
     @media only screen and (min-width: 480px) and (max-width: 767px) {
-
-        .header {
-          margin: 0 auto;
-        }
     }
 
 
