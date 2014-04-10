@@ -1,7 +1,7 @@
 <div class="welcome">
   <div class="wrapper clearfix">
     <div class="profile_picture">
-      <%= image_tag @user.avatar.url(:medium) %>
+      <%= image_tag(@user.avatar.url(:medium)) %>
       <p><%= @user.name %></p>
       <% if current_user == @user %>
         <p>
@@ -16,7 +16,9 @@
     <div class="profile_info">
       <h1>Game History</h1>
       <% @user_games_grouped.each do |court, games| %>
+        <hr>
         <h4><em><%= court.name %></em></h4>
+        <hr>
         <% games.each do |game| %>
           <%= render partial: 'games/game', locals: {game: game} %>
         <% end %>
@@ -25,3 +27,26 @@
     </div>
   </div>
 </div>
+
+<script>
+$(document).ready(function(){
+  $('.game .game_players').hide();
+  $('.expansion').click(function(){
+    $(this).parent().parent().children('.game_players').slideToggle(470);
+    if ($(this).hasClass('rotate_down')) {
+      $(this).rotate({animateTo:0});
+      $(this).removeClass('rotate_down').addClass('rotate_up');
+    } else {
+      if ($(this).hasClass('rotate_up')) {
+        $(this).removeClass('rotate_up').addClass('rotate_down');
+        $(this).rotate({animateTo:90});
+      } else {
+        $(this).addClass('rotate_down');
+        $(this).rotate({animateTo:90});
+      }
+    }
+  });
+});
+</script>
+
+

@@ -13,15 +13,15 @@
         <p>Number of courts: <%= @court.num_courts.zero? ? '  unknown' : @court.num_courts %></p>
       </div>
       <br>
-      <%= link_to 'Add a comment about this court', new_court_comment_path(@court) %>
       <div class="court_comments">
         <% @court.comments.each do |c| %>
           <% if c.approved %>
             <p><%= render partial: 'comments/comment', locals: {comment: c} %></p>
           <% end %>
-          <hr>
         <% end %>
       </div>
+      <p class="comment_expansion">Add a comment about this court</p>
+      <%= render 'comments/form' %>
     </div>
     <div class="court_game">
       <h2>Games:</h2><br>
@@ -60,3 +60,13 @@ $(document).ready(function(){
   });
 });
 </script>
+
+<script>
+$(document).ready(function(){
+  $('.comment_form').hide();
+  $('.comment_expansion').click(function(){
+    $('.comment_form').slideToggle('slow');
+  });
+});
+</script>
+

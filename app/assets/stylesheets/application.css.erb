@@ -247,6 +247,7 @@ a:hover, a:active {
 }
 
 .comment {
+  border-bottom: 1px solid grey;
   padding: 10px;
   margin-bottom: 5px;
 }
@@ -264,6 +265,23 @@ a:hover, a:active {
   display: inline-block;
   line-height: 25px;
   margin-top: 6px;
+}
+
+.game .title h3 a {
+  font-size: 14px;
+  margin-left: 25px;
+}
+
+.skill_level {
+  font-size: 16px;
+}
+
+.skill_level a {
+  font-size: 12px;
+}
+
+.game ul {
+  padding-top: 10px;
 }
 
 .game li {
@@ -300,6 +318,34 @@ a:hover, a:active {
 
 .profile_info h4 {
   font-size: 26px;
+}
+
+a:link, a:visited {
+  color: rgb(196, 100, 29);
+  text-decoration: none;
+}
+
+a:hover, a:active {
+  color: rgba(196, 100, 29, 0.5);
+  /*text-decoration: underline;*/
+}
+
+.comment_expansion {
+  color: rgb(196, 100, 29);
+  padding: 10px 0;
+}
+
+.comment_expansion:hover {
+  color: rgba(196, 100, 29, 0.5);
+  cursor: pointer;
+}
+
+.comment_form .actions {
+  margin: 0;
+}
+
+.comment_field textarea {
+  resize: none;
 }
 
 em {
@@ -372,6 +418,24 @@ em {
 
       .static_map {
         float: none;
+      }
+
+      .profile_picture {
+        float: none;
+      }
+
+      .profile_info {
+        margin-right: 0;
+        float: none;
+      }
+
+      .game {
+        margin: 0 auto;
+        text-align: left;
+      }
+
+      .comment_form .actions {
+        float: left;
       }
     }
 
