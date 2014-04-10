@@ -198,8 +198,13 @@ a:hover, a:active {
 }
 
 .pagination {
-  margin-top: 50px;
+  clear: both;
   text-align: center;
+}
+
+.pagination p {
+  display: inline;
+
 }
 
 .search_results {
@@ -220,21 +225,20 @@ a:hover, a:active {
   float: right;
 }
 
-.game_map {
+.court_map {
   float: right;
+  width: 600px; /*same size as map*/
 }
 
 .court_info {
-  padding: 5px;
   text-align: right;
 }
 
-.court_info a, .court_info p {
-  padding: 5px;
-}
-
 .court_comments {
+  background: rgb(240, 240, 240);
   font-size: 14px;
+  line-height: 20px;
+  margin-top: 10px;
 }
 
 .court_comments span {
@@ -243,25 +247,27 @@ a:hover, a:active {
 }
 
 .comment {
-  background: lightgrey;
   padding: 10px;
   margin-bottom: 5px;
 }
 
 .game {
-  background: rgba(196, 100, 29, 0.2);
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 2px;
-  width: 400px;
+  width: 500px;
 }
 
-.game a {
-  font-size: 14px;
+.game .triangle {
+  float: left;
+  width: 50px;
+}
+
+.game .title {
+  display: inline-block;
+  line-height: 25px;
+  margin-top: 6px;
 }
 
 .game li {
-  padding: 2px 0 2px 250px;
+  padding: 2px 0 2px 110px;
 }
 
 .about p {
@@ -275,6 +281,29 @@ a:hover, a:active {
 
 .about li {
   padding: 0 0 5px 50px;
+}
+
+.profile_picture {
+  float: left;
+  margin: 40px;
+  text-align: center;
+}
+
+.profile_picture p {
+  padding: 5px 0;
+}
+
+.profile_info {
+  margin-right: 100px;
+  float: right;
+}
+
+.profile_info h4 {
+  font-size: 26px;
+}
+
+em {
+  font-style: italic;
 }
 
 /* #Tablet (Portrait)

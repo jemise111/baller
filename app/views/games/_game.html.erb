@@ -1,12 +1,19 @@
 <div class="game">
-  <p><%= "#{game.time_info}" %></p>
-  <p>Skill level:
-    <%= game.skill_level.nil? ? 'none' : game.skill_level %>
-    <%= link_to "What's this?", about_path %>
-  </p>
-  <% unless game.users.include?(current_user) || game.users.count >= 20 %>
-    <%= link_to 'join this game', "/games/#{game.id}/add-current", {method: :post} %>
-  <% end %>
+  <div class="triangle">
+    <%= image_tag('triangle.png', class: 'expansion') %>
+  </div>
+  <div class="title">
+    <h3>
+      <%= "#{game.time_info}" %>
+      <% unless game.users.include?(current_user) || game.users.count >= 20 %>
+      <%= link_to 'join this game', "/games/#{game.id}/add-current", {class: 'join_link', method: :post} %>
+    <% end %>
+    </h3>
+    <p class="skill_level">Skill level:
+      <%= game.skill_level.nil? ? 'none' : game.skill_level %>
+      <%= link_to "(What's this?)", about_path %>
+    </p>
+  </div>
   <div class="game_players">
     <ul>
       <% game.users.each do |user| %>

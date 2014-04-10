@@ -1,7 +1,7 @@
 <div class="welcome">
   <div class="wrapper clearfix">
     <h1><%= @court.name %></h1>
-    <div class="game_map">
+    <div class="court_map">
       <iframe
         width="600"
         height="450"
@@ -11,27 +11,52 @@
       <div class="court_info">
         <p><%= @court.location %></p>
         <p>Number of courts: <%= @court.num_courts.zero? ? '  unknown' : @court.num_courts %></p>
-        <%= link_to 'Add a comment about this court', new_court_comment_path(@court) %>
       </div>
+      <br>
+      <%= link_to 'Add a comment about this court', new_court_comment_path(@court) %>
       <div class="court_comments">
         <% @court.comments.each do |c| %>
           <% if c.approved %>
             <p><%= render partial: 'comments/comment', locals: {comment: c} %></p>
           <% end %>
+          <hr>
         <% end %>
       </div>
     </div>
     <div class="court_game">
       <h2>Games:</h2><br>
+      <p><%= link_to 'Start a new game', new_court_game_path(@court) %></p>
+      <br>
       <% if @court.has_current_games? %>
         <% @court.games.each do |game| %>
           <%= render partial: 'games/game', locals: {game: game} unless game.past?%>
         <% end %>
+      <% else %>
+        <p>No current games!</p>
       <% end %>
-      <br>
-      <p><%= link_to 'Start a new game', new_court_game_path(@court) %></p>
       <br>
       <p><%= link_to 'Back to all courts', courts_path %></p>
     </div>
   </div>
 </div>
+
+<script>
+$(document).ready(function(){
+  $('.game .game_players').hide();
+  $('.expansion').click(function(){
+    $(this).parent().parent().children('.game_players').slideToggle(470);
+    if ($(this).hasClass('rotate_down')) {
+      $(this).rotate({animateTo:0});
+      $(this).removeClass('rotate_down').addClass('rotate_up');
+    } else {
+      if ($(this).hasClass('rotate_up')) {
+        $(this).removeClass('rotate_up').addClass('rotate_down');
+        $(this).rotate({animateTo:90});
+      } else {
+        $(this).addClass('rotate_down');
+        $(this).rotate({animateTo:90});
+      }
+    }
+  });
+});
+</script>

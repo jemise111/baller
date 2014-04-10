@@ -1,8 +1,8 @@
 <div class="comment">
   <p>
     <span><%= comment.body %></span><br>
-    on <%= comment.created_at.strftime('%D') %><br><br>
-    <%= link_to comment.user.name %><br>
+    on <%= comment.created_at.strftime('%D') %><br>
+    <%= link_to comment.user.name, comment.user %><br>
     <% if comment.user == current_user || current_admin %>
       <%= link_to 'edit', edit_comment_path(comment) %> |
       <%= link_to 'delete', comment, method: :delete, data: {confirm: 'Are you sure? You cannot undo this action'} %>
