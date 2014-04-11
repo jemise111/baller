@@ -7,4 +7,10 @@ class UserMailer < ActionMailer::Base
     # need a url?
     mail(to: @user.email, subject: 'New game activity!')
   end
+
+  def welcome_email(user)
+    @user = user
+    # need a url?
+    mail(to: @user.email, subject: 'Welcome to BallerNYC!')
+  end
 end
