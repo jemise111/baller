@@ -11,10 +11,13 @@ class Court < ActiveRecord::Base
   def self.zip_code_search(zip_code)
     lat_lon = LocationSearch::lat_lon_from_zip_code(zip_code)
     result_courts = {}
-    self.all.each do |court|
-      if court.distance_to(lat_lon) < CLOSE_DISTANCE
-        result_courts[court.distance_to(lat_lon)] = court
+    begin
+      self.all.each do |court|
+        if court.distance_to(lat_lon) < CLOSE_DISTANCE
+          result_courts[court.distance_to(lat_lon)] = court
+        end
       end
+    rescue
     end
     result_courts
   end

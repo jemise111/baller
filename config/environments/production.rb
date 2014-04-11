@@ -85,7 +85,7 @@ Baller::Application.configure do
   port:                 587,
   domain:               'google.com',
   user_name:            'ballerNYCco@gmail.com',
-  password:             'RubyRubyRubyRuby',
+  password:             ENV["BALLERNYC_PASSWORD"],
   authentication:       'plain',
   enable_starttls_auto: true  }
 

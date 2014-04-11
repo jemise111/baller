@@ -3,7 +3,8 @@
     <h1>Courts near <%= params[:q] %></h1>
     <% if @result_courts.empty? %>
       <div class="search_results">
-        <em><%= flash[:no_results] %></em>
+        <p><em><%= flash[:no_results] %></em></p>
+        <br>
         <%= link_to 'back', :back %>
       </div>
     <% else %>
