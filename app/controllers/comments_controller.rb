@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @unapproved_comments = Comment.where(approved: false)
   end
 
-  def new
+  def new # this is currently unused
     @court = Court.find(params[:court_id])
     @comment = @court.comments.new
   end
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Court.find(params[:court_id]).comments.create(comment_params)
     @comment.update(approved: false, user_id: session[:user_id])
-    redirect_to @comment.court
+    redirect_to comments_submit_path
   end
 
   # as of now when a comment is approved and then edited, it goes back in for approval
@@ -46,6 +46,9 @@ class CommentsController < ApplicationController
     comment.approved = !comment.approved
     comment.save
     redirect_to comments_path
+  end
+
+  def submit
   end
 
   private

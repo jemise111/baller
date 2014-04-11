@@ -5,6 +5,7 @@ Baller::Application.routes.draw do
   get '/courts/search', to: 'courts#search'
   get '/games', to: 'games#index'
   get '/comments', to: 'comments#admin_index'
+  get '/comments/submit', to: 'comments#submit'
   post '/comments/:id/approval', to: 'comments#approval'
   get '/games/:id/players', to: 'games#players'
   post '/games/:game_id/users/:id', to: 'games#remove_player'
