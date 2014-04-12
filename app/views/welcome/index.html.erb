@@ -1,9 +1,16 @@
 <div class="welcome home">
   <h1><%= link_to "Find A Court. Start Ballin'", courts_path %></h1>
   <!-- <h1 class="orange">Start Ballin'</h1> -->
-  <%= form_tag("/courts/search", method: "get") do %>
-    <%= text_field_tag :q, nil, placeholder: 'Zip Code', class: 'home_zip_input' %>
-    <%= button_tag("Go", class: "welcome_button") %>
-  <% end %>
+  <div class="home_forms">
+    <%= form_tag("/courts/search", method: "get") do %>
+      <%= text_field_tag :q, nil, placeholder: 'Zip Code', class: 'home_zip_input' %>
+      <%= button_tag("Go", class: "welcome_button") %>
+    <% end %>
+    <%= form_tag("/courts", method: "get") do %>
+      <%= select_tag :b, options_for_select(@boroughs), class: 'home_borough_input' %>
+      <%= hidden_field_tag :p, 1 %>
+      <%= button_tag("Go", class: "welcome_button") %>
+    <% end %>
+  </div>
 </div>
 
