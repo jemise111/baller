@@ -46,6 +46,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'pry-rails'
 end
 
 # group :development do
@@ -57,9 +60,6 @@ gem 'crack'
 
 # Use Geocoder for location search
 gem 'geocoder'
-
-# Use pry-rails for debugging
-gem 'pry-rails'
 
 # Use paperclip with AWS S3 for image upload
 gem 'paperclip', github: 'thoughtbot/paperclip'
