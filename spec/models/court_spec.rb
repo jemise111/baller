@@ -1,6 +1,16 @@
 require 'spec_helper'
 
 describe Court do
+
+  it { should have_many(:comments).dependent(:delete_all) }
+  it { should have_many(:games).dependent(:delete_all) }
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:location) }
+  it { should validate_presence_of(:borough) }
+  it { should validate_numericality_of(:latitude) }
+  it { should validate_numericality_of(:longitude) }
+  it { should validate_numericality_of(:num_courts) }
+
   subject(:court) { Court.create(name: 'Test Park',
                                  location: '106 and Park',
                                  borough: 'Manhattan',
