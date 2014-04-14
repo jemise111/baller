@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Game do
+
+  it { should have_and_belong_to_many(:users) }
+  it { should belong_to(:court) }
+  it { should validate_presence_of(:start_at)}
+
   subject(:game) { Game.create(start_at: Time.parse("6:00"), skill_level: 3) }
   describe '.new' do
     it 'should be created with a start_at, created_at time, skill_level' do

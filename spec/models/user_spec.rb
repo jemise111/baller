@@ -31,9 +31,6 @@ describe User do
     should validate_uniqueness_of(:email)
   end
 
-
-
-
   subject(:mike) { User.create(name: 'Mike Jones',
                         email: 'mike.jones@gmail.com',
                         zip_code: 10001,
