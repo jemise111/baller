@@ -10,7 +10,7 @@ class Game < ActiveRecord::Base
 
   def start_at_cannot_be_in_the_past
     if start_at && start_at.to_time.to_i < Time.now.to_i
-      errors.add(:start_at, "can't be in the past")
+      errors.add(:start_at, "time cannot be in the past")
     end
   end
 

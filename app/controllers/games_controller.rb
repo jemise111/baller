@@ -14,11 +14,16 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Court.find(params[:court_id]).games.create(game_params)
-    @game.update(creator_id: session[:user_id])
-    @game.users << User.find(session[:user_id])
-    @game.send_game_tweet
-    redirect_to @game.court
+    @game = Court.find(params[:court_id]).games.new(game_params)
+    if @game.save
+      @game.update(creator_id: session[:user_id])
+      @game.send_game_tweet
+      @game.users << User.find(session[:user_id])
+      redirect_to @game.court
+    else
+      @court = Court.find(params[:court_id])
+      render 'new'
+    end
   end
 
   def edit

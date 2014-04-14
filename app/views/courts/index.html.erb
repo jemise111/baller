@@ -19,7 +19,7 @@
             <% @display_courts.each do |court| %>
               <p>
                 <%= link_to court.name, court %>
-                <% if court.has_current_games? {|game| !game.past? } %>
+                <% if court.has_current_games? %>
                   <%= image_tag('basketball.png') %>
                 <% end %>
               </p>
