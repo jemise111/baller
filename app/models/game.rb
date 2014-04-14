@@ -3,14 +3,24 @@ class Game < ActiveRecord::Base
   has_and_belongs_to_many(:users)
   belongs_to(:court)
   validates(:start_at, presence: true)
+  validate(:start_at_cannot_be_in_the_past)
 
   # validate that game start_at is in future
   # custom validation - use seconds in integer form
+
+  def start_at_cannot_be_in_the_past
+    if start_at && start_at.to_time.to_i < Time.now.to_i
+      errors.add(:start_at, "can't be in the past")
+    end
+  end
 
 
   # Might want different tweet messages, don't hardcode the string
   # Might store multiple messages in a hash
   # Store these different messages in a separate "Choose appropriate tweet" module or class
+
+
+
   def send_game_tweet
     content = "New pick up game on #{time_info} at #{self.court.name}! Wanna ball? http://www.ballernycco.com/courts/#{self.court.id}"
     Twitter::send_tweet(content, self.court.latitude, self.court.longitude)
