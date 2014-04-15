@@ -5,9 +5,6 @@ class Game < ActiveRecord::Base
   validates(:start_at, presence: true)
   validate(:start_at_cannot_be_in_the_past)
 
-  # validate that game start_at is in future
-  # custom validation - use seconds in integer form
-
   def start_at_cannot_be_in_the_past
     if start_at && start_at.to_time.to_i < Time.now.to_i
       errors.add(:start_at, "time cannot be in the past")

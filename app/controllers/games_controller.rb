@@ -15,10 +15,10 @@ class GamesController < ApplicationController
 
   def create
     @game = Court.find(params[:court_id]).games.new(game_params)
+    @game.users << User.find(session[:user_id])
+    @game.update(creator_id: session[:user_id])
     if @game.save
-      @game.update(creator_id: session[:user_id])
       @game.send_game_tweet
-      @game.users << User.find(session[:user_id])
       redirect_to @game.court
     else
       @court = Court.find(params[:court_id])
@@ -79,6 +79,6 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    params.require(:game).permit(:start_at, :capacity, :skill_level)
+    params.require(:game).permit(:start_at, :skill_level)
   end
 end
