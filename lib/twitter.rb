@@ -27,11 +27,15 @@ module Twitter
     http.start
     response = http.request request
 
-    # Parse and print the Tweet if the response code was 200
-    tweet = nil
-
     # Return true for success, false otherwise
     response.code == '200'
+  end
+
+  # untested
+  def self.random_tweet_content(time_info, court_name, court_id)
+    ["New pick up game on #{time_info} at #{court_name}. Wanna ball? http://ballernycco.com/courts/#{court_id}",
+     "Ready to ball? Game on #{time_info} at #{court_name}. http://ballernycco.com/courts/#{court_id}",
+     "Break in them new kicks on #{time_info} at #{court_name}. http://ballernycco.com/courts/#{court_id}"].sample
   end
 
 end

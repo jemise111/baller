@@ -19,7 +19,7 @@ class Game < ActiveRecord::Base
 
 
   def send_game_tweet
-    content = "New pick up game on #{time_info} at #{self.court.name}! Wanna ball? http://www.ballernycco.com/courts/#{self.court.id}"
+    content = Twitter::random_tweet_content(time_info, self.court.name, self.court.id)
     Twitter::send_tweet(content, self.court.latitude, self.court.longitude)
   end
 
