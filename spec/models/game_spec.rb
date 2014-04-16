@@ -23,7 +23,8 @@ describe Game do
   end
   describe "#time_info" do
     it "should return string containing game's datetime information" do
-      my_game = Game.create(start_at: DateTime.new(2014, 4, 7, 10, 0, 0))
+      # Use 4 hours ahead for eastern standard time
+      my_game = Game.create(start_at: DateTime.new(2014, 4, 7, 14, 0, 0))
       expect(my_game.time_info).to eq("Mon 04/07/14 at 10:00 am")
     end
   end
