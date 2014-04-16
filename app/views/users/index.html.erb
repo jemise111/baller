@@ -2,7 +2,7 @@
 <h1>Admin Tools</h1>
 <h3><%= link_to 'Edit Courts Data', "/courts/admin-index" %></h3>
 <h3><%= link_to 'Edit Comments Data', "/comments" %></h3>
-<h3><%= link_to 'Edit Games Data', "/games" %></h3>
+<h3><%= link_to 'Edit Games Data', games_path %></h3>
 <h2>All Users</h2>
 <%= render @users %>
 <p><%= link_to 'add new user', new_user_path %></p>

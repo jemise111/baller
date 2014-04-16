@@ -3,7 +3,7 @@
   <p><%= link_to game.court.name, game.court %> | </p>
   <p>Created By: <%= link_to User.find(game.creator_id).name, User.find(game.creator_id) %> | </p>
   <p>Players: <%= game.users.count %></p>
-  <p><%= link_to 'edit_players', "/games/#{game.id}/players" %></p>
+  <p><%= link_to 'edit players', "/games/#{game.id}/players" %></p>
   <p><%= link_to 'edit', edit_game_path(game) %></p>
   <p><%= link_to 'delete', game, method: :delete, data: {confirm: 'Are you sure? You cannot undo this action'} %></p>
 </div>
