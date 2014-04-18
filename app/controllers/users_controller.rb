@@ -24,7 +24,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.update(admin: false)
     if @user.save
-      UserMailer.welcome_email(@user).deliver
+      begin
+        UserMailer.welcome_email(@user).deliver
+      rescue Exception => e
+        # maybe log message to heroku logs
+      end
       session[:user_id] = @user.id # user is logged in upon creation
       redirect_to root_path
     else
